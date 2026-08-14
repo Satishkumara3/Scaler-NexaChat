@@ -75,8 +75,8 @@ def _set_session_cookie(response: Response, raw_token: str) -> None:
         key=SESSION_COOKIE,
         value=raw_token,
         httponly=True,
-        samesite="lax",
-        secure=False,       # set True in production with HTTPS
+        samesite="none",
+        secure=True,       # MUST be True for cross-origin samesite=none
         max_age=SESSION_MAX_AGE,
         path="/",
     )
