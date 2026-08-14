@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: scaler-nexachat-api
+    env: python
+    rootDir: backend
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+
+      - key: DB_PATH
+        value: /data/chat.db
+
+      - key: CORS_ORIGINS
+        sync: false
+
+      - key: SECRET_KEY
+        generateValue: true
+
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
