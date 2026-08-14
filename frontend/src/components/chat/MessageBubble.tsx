@@ -72,7 +72,8 @@ export function MessageBubble({
           {/* Image attachment */}
           {message.attachment && message.message_type === "IMAGE" && (
             <img
-              src={`http://localhost:8000${message.attachment.url}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}${message.attachment.url}`}
+              crossOrigin="use-credentials"
               alt="attachment"
               className="max-w-full rounded-lg mb-2 mt-1 object-contain max-h-[300px]"
             />
@@ -92,7 +93,7 @@ export function MessageBubble({
                 <span className="text-xs opacity-70">{(message.attachment.file_size / 1024).toFixed(1)} KB</span>
               </div>
               <a
-                href={`http://localhost:8000${message.attachment.url}`}
+                href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}${message.attachment.url}`}
                 download
                 target="_blank"
                 rel="noreferrer"
