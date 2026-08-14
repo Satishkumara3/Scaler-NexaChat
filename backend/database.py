@@ -198,17 +198,21 @@ async def init_db() -> None:
     """
     async with aiosqlite.connect(settings.DB_PATH) as db:
         db.row_factory = aiosqlite.Row
-        # Phase 3 migration: add role to conversation_members if not present
+        # 1. Run all base CREATE TABLE statements
+        await db.executescript(SCHEMA_SQL)
+        
+        # 2. Phase 3 migration: add role to conversation_members if not present
         cursor = await db.execute("PRAGMA table_info(conversation_members)")
         cm_cols = [row["name"] for row in await cursor.fetchall()]
-        if "role" not in cm_cols:
+        if cm_cols and "role" not in cm_cols:
             await db.execute("ALTER TABLE conversation_members ADD COLUMN role TEXT NOT NULL DEFAULT 'member'")
 
-        # Phase 7B migration: add reply_to_message_id if not present
+        # 3. Phase 7B migration: add reply_to_message_id if not present
         cursor = await db.execute("PRAGMA table_info(messages)")
-        cols = [row["name"] for row in await cursor.fetchall()]
-        if "reply_to_message_id" not in cols:
+        msg_cols = [row["name"] for row in await cursor.fetchall()]
+        if msg_cols and "reply_to_message_id" not in msg_cols:
             await db.execute("ALTER TABLE messages ADD COLUMN reply_to_message_id TEXT REFERENCES messages(id) ON DELETE SET NULL")
+        
         await db.commit()
     print(f"[OK] Database initialised at: {settings.DB_PATH}")
 
