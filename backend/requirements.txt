@@ -1,0 +1,13 @@
+# Runtime dependencies
+fastapi==0.115.14
+uvicorn[standard]==0.34.3
+aiosqlite==0.21.0
+pydantic==2.11.7
+pydantic-settings==2.10.1
+python-jose[cryptography]==3.5.0   # JWT — needed in Phase 2
+python-multipart==0.0.20           # Form data — needed in Phase 2
+httpx==0.28.1                       # Async HTTP client — used in tests
+
+# Dev / test
+pytest==8.4.1
+pytest-asyncio==1.0.0

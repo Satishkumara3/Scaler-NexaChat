@@ -1,0 +1,31 @@
+# Root gitignore
+# Backend
+backend/venv/
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.env
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+backend/.pytest_cache/
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db

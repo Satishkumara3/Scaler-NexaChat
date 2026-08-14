@@ -1,0 +1,17 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\satish\OneDrive\Desktop\Scaler_AI_Chat_Application\backend\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\satish\OneDrive\Desktop\Scaler_AI_Chat_Application\backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, asyncio-1.0.0
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+tests/test_health.py::test_root [OK] Database initialised at: C:\Users\satish\AppData\Local\Temp\pytest-of-satish\pytest-1\testdb0\test_chat.db
+PASSED
+tests/test_health.py::test_health_ok [OK] Database initialised at: C:\Users\satish\AppData\Local\Temp\pytest-of-satish\pytest-1\testdb0\test_chat.db
+PASSED
+tests/test_health.py::test_health_db_schema_version [OK] Database initialised at: C:\Users\satish\AppData\Local\Temp\pytest-of-satish\pytest-1\testdb0\test_chat.db
+PASSED
+
+============================== 3 passed in 1.50s ==============================

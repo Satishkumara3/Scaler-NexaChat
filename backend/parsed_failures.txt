@@ -1,0 +1,362 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.14.2, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 59 items
+
+tests\test_health.py ...                                                 [  5%]
+tests\test_phase2.py ......................                              [ 42%]
+tests\test_phase3.py ......                                              [ 52%]
+tests\test_phase4.py .......                                             [ 64%]
+tests\test_phase5.py EEE..                                               [ 72%]
+tests\test_phase7b.py ................                                   [100%]
+
+=================================== ERRORS ====================================
+_________________ ERROR at setup of test_create_and_get_group _________________
+
+test_db_path_p5 = 'C:\\Users\\hp\\AppData\\Local\\Temp\\pytest-of-hp\\pytest-1\\testdb_p50\\test_chat_p5.db'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000025B1E5B84B0>
+
+    @pytest_asyncio.fixture
+    async def client(test_db_path_p5, monkeypatch):
+        monkeypatch.setenv("DB_PATH", test_db_path_p5)
+        import config
+        config.settings.DB_PATH = test_db_path_p5
+        config.get_settings.cache_clear()
+        config.settings = config.get_settings()
+        from database import init_db
+        from main import app
+>       await init_db()
+
+tests\test_phase5.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+database.py:201: in init_db
+    await db.executescript(SCHEMA_SQL)
+venv\Lib\site-packages\aiosqlite\core.py:255: in executescript
+    cursor = await self._execute(self._conn.executescript, sql_script)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+venv\Lib\site-packages\aiosqlite\core.py:160: in _execute
+    return await future
+           ^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tx = <_queue.SimpleQueue object at 0x0000025B1E67B760>
+
+    def _connection_worker_thread(tx: _TxQueue):
+        """
+        Execute function calls on a separate thread.
+    
+        :meta private:
+        """
+        while True:
+            # Continues running until all queue items are processed,
+            # even after connection is closed (so we can finalize all
+            # futures)
+    
+            future, function = tx.get()
+    
+            try:
+                LOG.debug("executing %s", function)
+>               result = function()
+                         ^^^^^^^^^^
+E               sqlite3.OperationalError: database is locked
+
+venv\Lib\site-packages\aiosqlite\core.py:63: OperationalError
+__________________ ERROR at setup of test_non_member_access ___________________
+
+test_db_path_p5 = 'C:\\Users\\hp\\AppData\\Local\\Temp\\pytest-of-hp\\pytest-1\\testdb_p50\\test_chat_p5.db'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000025B1E68B4D0>
+
+    @pytest_asyncio.fixture
+    async def client(test_db_path_p5, monkeypatch):
+        monkeypatch.setenv("DB_PATH", test_db_path_p5)
+        import config
+        config.settings.DB_PATH = test_db_path_p5
+        config.get_settings.cache_clear()
+        config.settings = config.get_settings()
+        from database import init_db
+        from main import app
+>       await init_db()
+
+tests\test_phase5.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+database.py:201: in init_db
+    await db.executescript(SCHEMA_SQL)
+venv\Lib\site-packages\aiosqlite\core.py:255: in executescript
+    cursor = await self._execute(self._conn.executescript, sql_script)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+venv\Lib\site-packages\aiosqlite\core.py:160: in _execute
+    return await future
+           ^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tx = <_queue.SimpleQueue object at 0x0000025B1E67ADA0>
+
+    def _connection_worker_thread(tx: _TxQueue):
+        """
+        Execute function calls on a separate thread.
+    
+        :meta private:
+        """
+        while True:
+            # Continues running until all queue items are processed,
+            # even after connection is closed (so we can finalize all
+            # futures)
+    
+            future, function = tx.get()
+    
+            try:
+                LOG.debug("executing %s", function)
+>               result = function()
+                         ^^^^^^^^^^
+E               sqlite3.OperationalError: database is locked
+
+venv\Lib\site-packages\aiosqlite\core.py:63: OperationalError
+__________________ ERROR at setup of test_admin_permissions ___________________
+
+test_db_path_p5 = 'C:\\Users\\hp\\AppData\\Local\\Temp\\pytest-of-hp\\pytest-1\\testdb_p50\\test_chat_p5.db'
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000025B1E68B700>
+
+    @pytest_asyncio.fixture
+    async def client(test_db_path_p5, monkeypatch):
+        monkeypatch.setenv("DB_PATH", test_db_path_p5)
+        import config
+        config.settings.DB_PATH = test_db_path_p5
+        config.get_settings.cache_clear()
+        config.settings = config.get_settings()
+        from database import init_db
+        from main import app
+>       await init_db()
+
+tests\test_phase5.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+database.py:201: in init_db
+    await db.executescript(SCHEMA_SQL)
+venv\Lib\site-packages\aiosqlite\core.py:255: in executescript
+    cursor = await self._execute(self._conn.executescript, sql_script)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+venv\Lib\site-packages\aiosqlite\core.py:160: in _execute
+    return await future
+           ^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tx = <_queue.SimpleQueue object at 0x0000025B1E6DA1A0>
+
+    def _connection_worker_thread(tx: _TxQueue):
+        """
+        Execute function calls on a separate thread.
+    
+        :meta private:
+        """
+        while True:
+            # Continues running until all queue items are processed,
+            # even after connection is closed (so we can finalize all
+            # futures)
+    
+            future, function = tx.get()
+    
+            try:
+                LOG.debug("executing %s", function)
+>               result = function()
+                         ^^^^^^^^^^
+E               sqlite3.OperationalError: database is locked
+
+venv\Lib\site-packages\aiosqlite\core.py:63: OperationalError
+============================== warnings summary ===============================
+venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/test_phase2.py: 7 warnings
+tests/test_phase3.py: 4 warnings
+tests/test_phase4.py: 2 warnings
+tests/test_phase5.py: 3 warnings
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\httpx\_client.py:1768: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return await self.request(
+
+tests/test_phase2.py: 7 warnings
+tests/test_phase3.py: 9 warnings
+tests/test_phase4.py: 8 warnings
+tests/test_phase5.py: 4 warnings
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\httpx\_client.py:1859: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return await self.request(
+
+tests/test_phase2.py::test_update_profile
+tests/test_phase4.py::test_message_status_delivered
+tests/test_phase4.py::test_message_status_read
+tests/test_phase4.py::test_message_status_read
+tests/test_phase4.py::test_cannot_mark_own_message
+tests/test_phase4.py::test_nonmember_cannot_update_status
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\httpx\_client.py:1896: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return await self.request(
+
+tests/test_phase2.py::test_remove_contact
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\httpx\_client.py:1966: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return await self.request(
+
+tests/test_phase3.py::test_websocket_auth_and_messaging
+tests/test_phase3.py::test_websocket_auth_and_messaging
+tests/test_phase4.py::test_ws_typing_indicators
+tests/test_phase4.py::test_ws_message_delivery_receipt
+tests/test_phase4.py::test_ws_message_delivery_receipt
+tests/test_phase4.py::test_ws_message_delivery_receipt
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\starlette\testclient.py:455: DeprecationWarning: Setting per-request cookies=<...> is being deprecated, because the expected behaviour on cookie persistence is ambiguous. Set cookies directly on the client instance instead.
+    return super().request(
+
+tests/test_phase4.py::test_message_status_delivered
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\_pytest\threadexception.py:58: PytestUnhandledThreadExceptionWarning: Exception in thread Thread-140 (_connection_worker_thread)
+  
+  Traceback (most recent call last):
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 66, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_result, future, result)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "C:\Program Files\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+      self._context.run(self.run)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\threading.py", line 1024, in run
+      self._target(*self._args, **self._kwargs)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 75, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_exception, future, e)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+    warnings.warn(pytest.PytestUnhandledThreadExceptionWarning(msg))
+
+tests/test_phase4.py::test_ws_typing_indicators
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\_pytest\threadexception.py:58: PytestUnhandledThreadExceptionWarning: Exception in thread Thread-185 (_connection_worker_thread)
+  
+  Traceback (most recent call last):
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 66, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_result, future, result)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "C:\Program Files\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+      self._context.run(self.run)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\threading.py", line 1024, in run
+      self._target(*self._args, **self._kwargs)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 75, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_exception, future, e)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+    warnings.warn(pytest.PytestUnhandledThreadExceptionWarning(msg))
+
+tests/test_phase4.py::test_ws_message_delivery_receipt
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\_pytest\threadexception.py:58: PytestUnhandledThreadExceptionWarning: Exception in thread Thread-194 (_connection_worker_thread)
+  
+  Traceback (most recent call last):
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 66, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_result, future, result)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "C:\Program Files\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+      self._context.run(self.run)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\threading.py", line 1024, in run
+      self._target(*self._args, **self._kwargs)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 75, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_exception, future, e)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+    warnings.warn(pytest.PytestUnhandledThreadExceptionWarning(msg))
+
+tests/test_phase5.py::test_create_and_get_group
+  C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\_pytest\threadexception.py:58: PytestUnhandledThreadExceptionWarning: Exception in thread Thread-204 (_connection_worker_thread)
+  
+  Traceback (most recent call last):
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 66, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_result, future, result)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "C:\Program Files\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+      self._context.run(self.run)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\threading.py", line 1024, in run
+      self._target(*self._args, **self._kwargs)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\hp\Downloads\Scaler_AI_Chat_Application\Scaler_AI_Chat_Application\backend\venv\Lib\site-packages\aiosqlite\core.py", line 75, in _connection_worker_thread
+      future.get_loop().call_soon_threadsafe(set_exception, future, e)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 873, in call_soon_threadsafe
+      self._check_closed()
+      ~~~~~~~~~~~~~~~~~~^^
+    File "C:\Program Files\Python314\Lib\asyncio\base_events.py", line 551, in _check_closed
+      raise RuntimeError('Event loop is closed')
+  RuntimeError: Event loop is closed
+  
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+    warnings.warn(pytest.PytestUnhandledThreadExceptionWarning(msg))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR tests/test_phase5.py::test_create_and_get_group - sqlite3.OperationalEr...
+ERROR tests/test_phase5.py::test_non_member_access - sqlite3.OperationalError...
+ERROR tests/test_phase5.py::test_admin_permissions - sqlite3.OperationalError...
+================= 56 passed, 62 warnings, 3 errors in 24.58s ==================
