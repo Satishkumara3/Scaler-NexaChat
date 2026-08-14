@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     # Database
     DB_PATH: str = "./chat.db"
 
-    # CORS — comma-separated list of allowed origins
-    CORS_ORIGINS: str = "http://localhost:3000"
+    # CORS — comma-separated list of allowed origins. Fallback to production Vercel URL if EnvVar is missing.
+    CORS_ORIGINS: str = "https://scaler-nexa-chat-qnch.vercel.app,http://localhost:3000"
 
     @property
     def cors_origins_list(self) -> list[str]:
