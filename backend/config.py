@@ -27,7 +27,11 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> list[str]:
         # Strip whitespace and explicitly remove banned wildcards (*)
-        return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip() and o.strip() != "*"]
+        user_origins = [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip() and o.strip() != "*"]
+        # BRUTE FORCE FALLBACK: Always allow the production Vercel app regardless of Render settings
+        if "https://scaler-nexa-chat-qnch.vercel.app" not in user_origins:
+            user_origins.append("https://scaler-nexa-chat-qnch.vercel.app")
+        return user_origins
 
     model_config = SettingsConfigDict(
         env_file=".env",
