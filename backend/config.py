@@ -26,7 +26,8 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> list[str]:
-        return [o.strip() for o in self.CORS_ORIGINS.split(",")]
+        # Strip whitespace and explicitly remove banned wildcards (*)
+        return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip() and o.strip() != "*"]
 
     model_config = SettingsConfigDict(
         env_file=".env",
